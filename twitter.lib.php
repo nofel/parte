@@ -66,8 +66,7 @@ who have set a custom user icon.
 	 * @return string
 	 */
 	function getPublicTimeline($format = 'xml') {
-		return $this->apiCall('statuses/public_timeline', 'get', 
-$format, array(), false);
+		return $this->apiCall('statuses/public_timeline', 'get', $format, array(), false);
 	}
 
 	/**
