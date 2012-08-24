@@ -4,8 +4,7 @@
 	Nofel Shanta
 	Student ID: s3254869
 	Web Database Application - Assignment 1
-	Part B - Develop a two component query module.
-	Date 8/8/2012
+	Part D - Develop a two component query module.
 */
 
 define('DB_HOST', 'yallara.cs.rmit.edu.au');
