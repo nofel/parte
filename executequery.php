@@ -169,8 +169,14 @@ else
 	$stmt->execute($values);
 	$i=0;
 	$arr=array();
+	$sessionarr=$_SESSION['sessionarr'];
+	if(!isset($sessionarr))
+	{		
+		$sessionarr=array();
+	}
 	while ($row = $stmt->fetch(PDO::FETCH_OBJ))
 	{
+                array_push($sessionarr,$row->wine_name);
 		$arr[$i]['wine_name']=$row->wine_name;
 		$arr[$i]['variety']=$row->variety;
 		$arr[$i]['year']=$row->year;
