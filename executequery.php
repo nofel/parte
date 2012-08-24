@@ -157,7 +157,7 @@ $numrecords = count($rows);
 if($numrecords==0)
 {
 	$str="<br/><font color='red' size='5'>No records match your search criteria</font>";
-	$str.="<br/><br/><a href='history.back()'>Go back to try again</a><br/>";
+	$str.="<br/><br/><a href='javascript:history.back()'>Go back to try again</a><br/>";
 }
 else
 { 
