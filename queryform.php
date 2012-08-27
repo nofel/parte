@@ -3,12 +3,19 @@ require_once('dbconfig.php');
 ?>
 
 <?php
+	echo "<a href='startsession.php'>Start Session</a>";
+	echo " | ";
+	echo "<a href='endsession.php'>End Session</a>";
+	echo " | ";
+	echo "<a href='viewfoundwines.php'>View Wine Names</a>";
+
+	echo "<br/>";
 /*
 	Nofel Shanta
 	Student ID: s3254869
 	Web Database Application - Assignment 1
 	Part C - Create Part B using Smarty Template
-	Date 24/08/2012
+	Date 15/08/2012
 */
 
 	  error_reporting(E_ALL);
@@ -25,7 +32,6 @@ require_once('dbconfig.php');
 	  /* Populate the region dropdown */
 	  $region = array();
 	  $default = '';
-
 	  // populate the list of regions from the database
 	  $pdoobject = new PDO($dsn, DB_USER, DB_PW);
 	  $pdoobject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -87,5 +93,6 @@ require_once('dbconfig.php');
 ?>
 
 <?php
-          $smarty->display('winery_template.tpl');
+         $smarty->display('winery_template.tpl');
 ?>
+

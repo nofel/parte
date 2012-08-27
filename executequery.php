@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ALL);
+session_start();
+error_reporting(E_ERROR);
 	
 // include the database configuration
 require_once('dbconfig.php');
@@ -123,8 +124,7 @@ $sql = $sql . " AND w.year >= ? and w.year<=?";
 
 // create a values array for the remaining of the
 if($region!='1')
-{ $values = 
-array("%".$wine."%","%".$winery."%",$region,$startyear,$endyear); }
+{ $values = array("%".$wine."%","%".$winery."%",$region,$startyear,$endyear); }
 else
 { $values = array("%".$wine."%","%".$winery."%",$startyear,$endyear); }
 
@@ -164,6 +164,14 @@ else
 	$str="<br/>".$numrecords." records match your search criteria<br/><br/>"; 
 }
 
+	echo "<a href='startsession.php'>Start Session</a>";
+	echo " | ";
+	echo "<a href='endsession.php'>End Session</a>";
+	echo " | ";
+	echo "<a href='viewfoundwines.php'>View Wine Names</a>";
+	echo " | ";
+	echo "<a href='tweet.php'>Share on Twitter</a>";
+
 	// execute the statement
 	$stmt = $pdo_variable->prepare($sql);
 	$stmt->execute($values);
@@ -176,7 +184,7 @@ else
 	}
 	while ($row = $stmt->fetch(PDO::FETCH_OBJ))
 	{
-                array_push($sessionarr,$row->wine_name);
+		array_push($sessionarr,$row->wine_name);
 		$arr[$i]['wine_name']=$row->wine_name;
 		$arr[$i]['variety']=$row->variety;
 		$arr[$i]['year']=$row->year;
@@ -185,10 +193,10 @@ else
 		$arr[$i]['cost']=$row->cost;
 		$i=$i+1;
 	}
-
+	$_SESSION['sessionarr']=$sessionarr;
 	echo "</table>";
 
 	$smarty->assign('searchresult', $str);
 	$smarty->assign('records', $arr);
-        $smarty->display('result_template.tpl');
+       $smarty->display('result_template.tpl');
 ?>
